@@ -1,0 +1,1 @@
+import{Ea as a}from"./chunk-MNMWNFLP.js";var e=class t{static \u0275fac=function(o){return new(o||t)};static \u0275cmp=a({type:t,selectors:[["app-weather-forecast-page"]],decls:0,vars:0,template:function(o,n){},encapsulation:2})};var i=[{path:"",component:e,providers:[]}];export{i as FORECAST_ROUTING};
