@@ -1,0 +1,43 @@
+<mat-form-field appearance="fill" class="search-field">
+  <input matInput type="search"
+         placeholder="Get a weather for your city"
+         aria-label="City search input"
+         [(ngModel)]="query"
+         (input)="searchCity($event)">
+  <button matSuffix mat-icon-button aria-label="Search">
+    <mat-icon>search</mat-icon>
+  </button>
+</mat-form-field>
+
+@if (weatherForecasts$ | async; as weatherForecasts) {
+  <h1>Weather for {{ weatherForecasts.city }}, {{ weatherForecasts.country }}</h1>
+
+  <div class="forecasts-list">
+  @for (weather of weatherForecasts.list; track $index) {
+    <mat-card appearance="outlined" class="weather-card">
+        <mat-card-header>
+          <mat-card-title-group>
+            <mat-card-title>
+              <div class="weather-header">
+                <span class="weather-date">
+                {{ weather.date | date : 'dd.MM'}}
+                </span>
+              <span class="weather-description">
+                {{ weather.description | titlecase }}
+              </span>
+                 </div>
+            </mat-card-title>
+            <app-weather-icon [icon]="weather.icon"></app-weather-icon>
+          </mat-card-title-group>
+        </mat-card-header>
+      <mat-card-content class="weather-content">
+        Temperature: <span class="max-weather">{{ weather.tempMax | number : '1.0-0' }}°</span> / <span class="min-weather">{{ weather.tempMin | number : '1.0-0'}}°</span>
+        Humidity: <span class="humidity"> {{ weather.humidity }}%</span>
+      </mat-card-content>
+    </mat-card>
+    } @empty {
+        <p>Unable to find a weather for the searched city</p>
+    }
+  </div>
+}
+

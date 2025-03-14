@@ -1,3 +1,7 @@
+Simple weather app connected to https://api.openweathermap.org
+
+Visit me: https://nastiakyrakina.github.io/weather-app/
+
 # WeatherApp
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.

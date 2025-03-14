@@ -1,0 +1,38 @@
+.max-weather {
+  font-weight: bold;
+  font-size: 2en;
+}
+
+.search-field {
+  width: 100%;
+}
+
+.weather-card {
+  margin-bottom: 10px;
+  flex: 1;
+  min-width: 200px;
+}
+.forecasts-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.weather-description {
+  font-size: 14px;
+}
+
+.weather-header {
+  display: inline-flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.weather-date {
+  margin-right: 10px;
+}
+
+.weather-content {
+  margin-top: 15px;
+}

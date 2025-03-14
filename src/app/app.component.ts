@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { MatSidenav, MatSidenavContainer } from '@angular/material/sidenav';
+import { MatIcon } from '@angular/material/icon';
+import { MatToolbar } from '@angular/material/toolbar';
+import { MatIconButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatSidenavContainer, MatSidenav],
+  imports: [RouterOutlet, MatIcon, MatToolbar, MatIconButton],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
