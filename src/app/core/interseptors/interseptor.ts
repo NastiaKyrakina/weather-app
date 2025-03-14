@@ -1,5 +1,5 @@
-import { HttpEvent, HttpEventType, HttpHandlerFn, HttpParams, HttpRequest } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { HttpEvent, HttpHandlerFn, HttpParams, HttpRequest } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 export function apiKeyInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> {
@@ -7,7 +7,7 @@ export function apiKeyInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn
     const newReq = req.clone({
       params: (req.params ? req.params :
         new HttpParams())
-        .set('appid', environment.apiKey)
+        .set('apiKey', environment.apiKey)
     });
     return next(newReq);
   }

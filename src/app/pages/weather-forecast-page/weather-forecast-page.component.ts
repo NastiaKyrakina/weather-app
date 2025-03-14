@@ -27,6 +27,7 @@ import { AsyncPipe, DatePipe, DecimalPipe, TitleCasePipe } from '@angular/common
 import { WeatherIconComponent } from './weather-icon/weather-icon.component';
 import { MatIcon } from '@angular/material/icon';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { NewsArticle } from './models/News';
 
 @Component({
   selector: 'app-weather-forecast-page',
@@ -60,7 +61,7 @@ export class WeatherForecastPageComponent implements OnInit {
   query: string = 'Dnipro';
   private search$: Subject<string> = new Subject<string>();
 
-  weatherForecasts$!: Observable<WeatherForecast>;
+  weatherForecasts$!: Observable<NewsArticle[]>;
 
   ngOnInit() {
     this.weatherForecasts$ = this.search$
@@ -75,14 +76,12 @@ export class WeatherForecastPageComponent implements OnInit {
       );
   }
 
-  loadWeatherForecast(): Observable<WeatherForecast> {
+  loadWeatherForecast(): Observable<NewsArticle[]> {
     return this.weatherService.getForecastForPeriod(this.query)
       .pipe(
         catchError((error) => {
           console.error(error);
-          return of({
-            list: [],
-          });
+          return of([]);
         })
       );
   }

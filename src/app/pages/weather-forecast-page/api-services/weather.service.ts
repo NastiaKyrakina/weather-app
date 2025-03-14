@@ -6,6 +6,7 @@ import { environment } from '../../../../environments/environment';
 import { WeatherResParserService } from '../helper-services/weather-res-parser.service';
 import { WeatherByCity, CurrentWeatherResponse, WeatherForecast, WeatherForecastRes } from '../models/Weather';
 import { CacheResult } from '../../../core/cache-services/cache-service';
+import { NewsArticle } from '../models/News';
 
 @Injectable()
 export class WeatherService extends HttpRequestService {
@@ -17,22 +18,13 @@ export class WeatherService extends HttpRequestService {
     super();
   }
 
-  getTodayForecastByCity(city: string): Observable<WeatherByCity> {
-    return this.http.get<CurrentWeatherResponse>(
-      this.url('weather'),
-      this.generateRequestOptions({ q: city, units: 'metric'  }))
-      .pipe(
-        map(res => this.resParser.getParsedWeatherData(res)),
-      );
-  }
-
   @CacheResult()
-  getForecastForPeriod(city: string): Observable<WeatherForecast> {
-    return this.http.get<WeatherForecastRes>(
-      this.url('forecast'),
-      this.generateRequestOptions({ q: city, units: 'metric' }))
+  getForecastForPeriod(city: string): Observable<NewsArticle[]> {
+    return this.http.get<{ articles: NewsArticle[] }>(
+      this.url('everything'),
+      this.generateRequestOptions({ q: city }))
       .pipe(
-        map(res => this.resParser.getParsedForecastData(res)),
+        map(res => res.articles),
       );
   }
 

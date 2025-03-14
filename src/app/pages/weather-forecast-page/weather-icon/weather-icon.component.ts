@@ -1,5 +1,4 @@
 import { Component, computed, input } from '@angular/core';
-import { environment } from '../../../../environments/environment';
 import { NgOptimizedImage } from '@angular/common';
 
 @Component({
@@ -12,5 +11,5 @@ import { NgOptimizedImage } from '@angular/common';
 })
 export class WeatherIconComponent {
   icon = input();
-  iconPath = computed(() => `${environment.weatherIconPath}/${this.icon()}.png`);
+  iconPath = computed(() => `${this.icon()}.png`);
 }
